@@ -95,20 +95,20 @@ function App() {
       { user.isSignedIn ?
         <button onClick={handleSignOut}>Sign Out</button> : <button onClick={handleSignIn}>Sign In</button>
       } 
-      {/* {user.isSignedIn &&  */}
+      {/* {user.isSignedIn && } */}
       <div>
         <input type="checkbox" onChange={()=>setNewUser(!newUser)}></input> 
         <label>New User Sign in</label>
         <form onSubmit={handleSubmit}>
-          {newUser && <input onBlur={handleBlur} name="name" type="text" placeholder="Your name" required></input>}<br></br>
+          {newUser && <input onBlur={handleBlur} name="name" type="text" placeholder="Your name"></input>}<br></br>
           <input onBlur={handleBlur} name="email" type="email" placeholder="Enter email" required></input><br></br>
           <input onBlur={handleBlur} name="password" type="password" placeholder="password" required></input><br></br>
           <button type="submit">Submit</button>
         </form>
         <p style={{color: 'red'}}>{user.error}</p>
+        {user.success && <p style={{color: 'green'}}>User created successfully</p>}
 
       </div>
-      {/* } */}
     </div>
   );
 }
