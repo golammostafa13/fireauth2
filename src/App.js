@@ -69,6 +69,23 @@ function App() {
         setUser(newUserInfo);
       });
     }
+    firebase.auth().signInWithEmailAndPassword(user.email, user.password)
+    .then((res) => {
+      // Signed in 
+      const newUserInfo = {...user};
+      newUserInfo.success = true;
+      newUserInfo.error = '';
+      setUser(newUserInfo);
+      // ...
+    })
+    .catch((error) => {
+      // var errorCode = error.code;
+      var errorMessage = error.message;
+      const newUserInfo = {...user};
+      newUserInfo.error = errorMessage;
+      newUserInfo.success = false;
+      setUser(newUserInfo);
+    });
     e.preventDefault();
   }
   const handleBlur = (e) =>{
