@@ -58,6 +58,7 @@ function App() {
         newUserInfo.success = true;
         newUserInfo.error = '';
         setUser(newUserInfo);
+        updateUserName(user.name);
         // ...
       })
       .catch((error) => {
@@ -76,6 +77,7 @@ function App() {
       newUserInfo.success = true;
       newUserInfo.error = '';
       setUser(newUserInfo);
+      console.log("sign in with " + res.user);
       // ...
     })
     .catch((error) => {
@@ -87,6 +89,17 @@ function App() {
       setUser(newUserInfo);
     });
     e.preventDefault();
+  }
+  const updateUserName = (name) =>{
+    var user = firebase.auth().currentUser;
+
+    user.updateProfile({
+      displayName: name,
+    }).then(function() {
+      console.log("Updated user info: " + name);
+    }).catch(function(error) {
+      console.log(error);
+    });
   }
   const handleBlur = (e) =>{
     // console.log(e.target.name, e.target.value);
